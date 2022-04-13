@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css"/>
+    <title>Weather Dashboard</title>
+</head>
+<body class="flex-column min-100-vh">
+    <header class="hero">
+        <h1 class="text-center">Hello Weather</h1>
+    </header>
+
+    <main class="row flex-row justify-space-between">
+        <!--Create the search column-->
+        <div class="col-12 col-md-3">
+            <div class="card">
+                <h3 class="card-header text-center">Search For A City</h3>
+                <form id="" class="card-body text-center">
+                    <label class="form-label" for="city"></label>
+                    <input name="city" id="city" type="text" autofocus="true" class="form-input text-center" placeholder="Las Vegas"/>
+                    <button class="btn btn-info mt-2 search-btn" type="submit">Search</button>
+                </form>
+            </div>
+            <!--Recent Searches below the search bar-->
+            <div class="">
+                <h3 class="text-center">Recent Searches</h3>
+                <div class="list-group">
+                    <a class="list-item flex-row justify-space-between align center">Test1</a>
+                    <a class="list-item flex-row justify-space-between align center">Test2</a>
+                    <a class="list-item flex-row justify-space-between align center">Test3</a>
+                </div>
+            </div>
+        </div>
+
+        <!--Weather Display-->
+        <div class="col-12 col-md-9">
+            <div class="border border-dark">
+                <h3 class="text-start">CITY NAME HERE</h3>
+                <ul class="list-group">
+                    <li class="list-item">Temp</li>
+                    <li class="list-item">Wind</li>
+                    <li class="list-item">Humidity</li>
+                    <li class="list-item">UV Index</li>
+                </ul>
+            </div>
+            <div class="">
+                <h3 class="text-start">5-Day Forecast:</h3>
+                <div class="row">
+                    <div class="card">
+                        <h4 class="card-header">Day 1</h4>
+                    </div>
+                    <div class="card">
+                        <h4 class="card-header">Day 2</h4>
+                    </div>
+                    <div class="card">
+                        <h4 class="card-header">Day 3</h4>
+                    </div>
+                    <div class="card">
+                        <h4 class="card-header">Day 4</h4>
+                    </div>
+                    <div class="card">
+                        <h4 class="card-header">Day 5</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+</html>
