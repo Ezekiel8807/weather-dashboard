@@ -1,6 +1,22 @@
 // let's assign the key to a variable so I don't have to worry about typing it throughout the script.
-var apiKey = 'appid=876a9cd8007aec3aef4fd80583307842';
+var apiKey = '876a9cd8007aec3aef4fd80583307842';
+// and let's create element var's to play with
+
+// input from the search bar
 var citySearchEl = $("#city");
+// display for city name on the page
+var cityNameEl = $("#searched-city")
+// display for weather
+var currentWeather = $("#current-weather")
+// display for 5-day weather
+var fiveDayDisplay = $("#five-day-forecast")
+
+/* DATA TO FOCUS ON:
+    TEMP
+    WIND
+    HUMIDITY
+    UV-INDEX [current day only]
+*/
 
 function formSubmitHandler(event) {
     event.preventDefault()
@@ -8,82 +24,115 @@ function formSubmitHandler(event) {
     var city = citySearchEl.val().trim();
 
     if (city) {
-        geoCodeInfo(city)
         citySearchEl.val('')
+        getGenInfo(city)
     } else {
         alert("Please enter a valid city")
     }
 }
 
-//function to begin to get the city info
-function geoCodeInfo(cityName) {
-    // code in the apiUrl to fetch() info
-    var geoCall = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&" + apiKey;
-
-    // get the data in vanilla JS format (safer and easier for me to read along
-    fetch(geoCall).then(function(response) {
-        //if request was successful
-        if (response.ok) {
-            response.json().then(function(data) {
-                displayCurrentInfo(data, cityName)
-                //lets get the longitude and latitude to feed into the next API call
-                var latCoord = data[0].lat;
-                var lonCoord = data[0].lon;
-                // make a call to get the actual weather info
-                var directCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" 
-                + latCoord + "&lon=" + lonCoord + "&exclude=minutely,hourly&units=imperial&" + apiKey;
-                //make another fetch
-                fetch(directCall).then(function(response) {
-                    if (response.ok) {
-                        response.json().then(function(data) {
-                            displayWeatherInfo(data);
-                        })
-                    } else {
-                        console.log("Error: Information Not Found")
-                    }
-                })
-                .catch(function(error){
-                    console.log("You spelled it wrong!")
-                })
+function getGenInfo(city){
+    var directGeoCode = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&&appid=${apiKey}`
+    //fetch the general info - we want city name, state name, and lat/lon
+    fetch(directGeoCode).then(function(response){
+        if(response.ok) {
+            response.json().then(function(data){
+                displayGenInfo(data, city)
+                getCurrentWeather(data[0].lat, data[0].lon)
             })
         } else {
-            console.log("Error: City Not Found");
+            alert("Error: City Not Found")
         }
     })
-    .catch(function(error) {
-        alert("Unable to Connect to Server")
+    .catch(function(error){
+        alert("Unable to Connect to Weather System")
     })
 }
 
-function displayCurrentInfo (info, searchTerm) {
-    if (info.length === 0) {
-        console.log("No weather information found about " + searchTerm)
-    }
-    // Ensure that the info is clear every time this function is called
-    $("#current-day").empty()
-
-
-    var cityState = info[0].name + "," + info[0].state;
-    //append it to the screen
-    $("#current-day").append("<h3 class='text-start'>" + cityState + "</h3>");
+function displayGenInfo(data, city){
+    //get the city name and state together
+    var cityState = data[0].name + ", " + data[0].state;
+    $("#searched-city").text(cityState)
 }
 
-function displayWeatherInfo(info) {
-    var today = info.daily[0];
+function getCurrentWeather(lat, lon){
+    var oneCall = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=hourly,minutely&appid=${apiKey}`
 
-    $("#current-day").append("<ul>");
-    $("ul").append("<li class='list-item'>High: " + today.temp.max + "</li>");
-    $("ul").append("<li class='list-item'>Low: " + today.temp.min + "</li>");
-    $("ul").append("<li class='list-item'>Wind: " + today.wind_speed + "</li>");
-    $("ul").append("<li class='list-item'>Humidity: " + today.humidity + "%</li>");
-    $("ul").append("<li class='list-item'>UV-Index: " + today.uvi + "</li>");
+    fetch(oneCall).then(function(response){
+        if(response.ok){
+            response.json().then(function(data){
+                displayCurrentInfo(data.current);
+                displayFiveDayInfo(data.daily)
+            })
+        } else {
+            alert("City Not Found")
+        }
+    })
+    .catch(function(error){
+        alert("Unable to Connect to Weather System")
+    })
+}
 
-    for(var i = 0; i < 6; i++) {
-        var milliseconds = info.daily[i].dt * 1000;
-        var dateObject = new Date(milliseconds)
-        var humanDate = dateObject.toLocaleDateString()
+function displayCurrentInfo(weather) {
+    //clear out the list for every call
+    currentWeather.children().remove()
 
-        console.log(humanDate);
+    // var for the current Date-
+    var currentDate = new Date(weather.dt * 1000).toLocaleDateString()
+    //append to the screen
+    $("#searched-city").append(" " + currentDate)
+
+    // var for current temp, wind speed, humidity, and UVI
+    var currentTemp = weather.temp;
+    var currentWndSpd = weather.wind_speed + " MPH";
+    var currentHmdty = weather.humidity + "%";
+    var currentUvi = weather.uvi;
+
+    //Append info to the screen
+    $("#current-weather").append("<li class='list-item'>Temperature: " + currentTemp + "</li>")
+    $("#current-weather").append("<li class='list-item'>Wind Speed: " + currentWndSpd + "</li>")
+    $("#current-weather").append("<li class='list-item'>Humidity: " + currentHmdty + "</li>")
+    $("#current-weather").append("<li class='list-item'>UV-Index: " + currentUvi + "</li>")
+}
+
+function displayFiveDayInfo(futureWeather){
+    fiveDayDisplay.children().remove()
+
+    console.log(futureWeather)
+
+    for(var i = 1; i < 6; i++){
+        var dailyForecast = futureWeather[i];
+
+        //create a div to put the weather cards up
+        var forecastCard = document.createElement("div");
+        forecastCard.setAttribute("class", "card")
+        console.log(forecastCard);
+
+        // get the forecast date to the screen
+        var forecastDate = document.createElement("h4")
+        forecastDate.setAttribute("class", "card-header")
+        forecastDate.textContent = new Date(dailyForecast.dt * 1000).toLocaleDateString();
+        forecastCard.appendChild(forecastDate);
+
+        //get forecast temp to the screen
+        var forecastTemp = document.createElement("span");
+        forecastTemp.setAttribute("class", "list-item");
+        forecastTemp.textContent = "Temperature: " + dailyForecast.temp.day;
+        forecastCard.appendChild(forecastTemp);
+
+        //get forecast wind to screen
+        var forecastWind = document.createElement("span");
+        forecastWind.setAttribute("class", "list-item");
+        forecastWind.textContent = "Wind Speed: " + dailyForecast.wind_speed + " MPH";
+        forecastCard.appendChild(forecastWind);
+
+        //get forecast humidity to screen
+        var forecastHmdty = document.createElement("span")
+        forecastHmdty.setAttribute("class", "list-item");
+        forecastHmdty.textContent = "Humidity: " + dailyForecast.humidity + "%";
+        forecastCard.appendChild(forecastHmdty);
+
+        fiveDayDisplay.append(forecastCard)
     }
 }
 
