@@ -10,6 +10,8 @@ var cityNameEl = $("#searched-city")
 var currentWeather = $("#current-weather")
 // display for 5-day weather
 var fiveDayDisplay = $("#five-day-forecast")
+// create an array for the purpose of monitoring all the buttons
+var searchedCities = [];
 
 /* DATA TO FOCUS ON:
     TEMP
@@ -53,6 +55,18 @@ function displayGenInfo(data, city){
     //get the city name and state together
     var cityState = data[0].name + ", " + data[0].state;
     $("#searched-city").text(cityState)
+
+    // create a button with the data that's present.
+    var recentSearch = document.createElement("button");
+    recentSearch.setAttribute("class", "btn btn-primary")
+    recentSearch.setAttribute("id", "history")
+    recentSearch.textContent = data[0].name;
+    //Make sure that no duplicate buttons can be made
+    if (!searchedCities.includes(recentSearch.textContent)){
+        //debugger;
+        searchedCities.push(recentSearch.textContent);
+        $("#recent-searches").append(recentSearch)
+    }
 }
 
 function getCurrentWeather(lat, lon){
@@ -98,7 +112,7 @@ function displayCurrentInfo(weather) {
 function displayFiveDayInfo(futureWeather){
     fiveDayDisplay.children().remove()
 
-    console.log(futureWeather)
+    //console.log(futureWeather)
 
     for(var i = 1; i < 6; i++){
         var dailyForecast = futureWeather[i];
@@ -106,7 +120,7 @@ function displayFiveDayInfo(futureWeather){
         //create a div to put the weather cards up
         var forecastCard = document.createElement("div");
         forecastCard.setAttribute("class", "card")
-        console.log(forecastCard);
+        //console.log(forecastCard);
 
         // get the forecast date to the screen
         var forecastDate = document.createElement("h4")
@@ -137,3 +151,9 @@ function displayFiveDayInfo(futureWeather){
 }
 
 $("#search-btn").on("click", formSubmitHandler)
+
+$("#recent-searches").on("click", "button", function() {
+    var priorSearch = $(this).text()
+    console.log(priorSearch);
+    getGenInfo(priorSearch)
+})
