@@ -13,18 +13,18 @@
 </head>
 <body class="flex-column min-100-vh">
     <header class="hero">
-        <h1 class="text-center">Hello Weather</h1>
+        <h1 class="text-center text-light blue-gradient">Weather Dashboard</h1>
     </header>
 
     <main class="row flex-row justify-space-between">
         <!--Create the search column-->
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-3 ml-3">
             <div class="card">
                 <h3 class="card-header text-center">Search For A City</h3>
                 <form id="" class="card-body text-center">
                     <label class="form-label" for="city"></label>
                     <input name="city" id="city" type="text" autofocus="true" class="form-input text-center" placeholder="Las Vegas"/>
-                    <button class="btn btn-info mt-2 search-btn" id="search-btn" type="submit">Search</button>
+                    <button class="btn mt-2 search-btn blue-gradient text-light" id="search-btn" type="submit">Search</button>
                 </form>
             </div>
             <!--Recent Searches below the search bar-->
@@ -35,34 +35,16 @@
         </div>
 
         <!--Weather Display-->
-        <div class="col-12 col-md-9">
+        <div class="col-12 col-md-8 hidden ml-5" id="general-display">
             <div class="row border border-dark" id="current-day">
                 <div class="col-12">
-                    <h3 id="searched-city">City Name</h3>
-                    <div id="current-weather" class="list-group">
-
-                    </div>
+                    <h3 id="searched-city"></h3>
+                    <div id="current-weather" class="list-group"></div>
                 </div>
             </div>
-            <div class="row border border-dark">
+            <div class="row">
                 <h3 class="col-12" id="forecast">5-Day Forecast:</h3>
-                <div class="d-flex" id="five-day-forecast">
-                    <!--<div class="card">
-                        <h4 class="card-header">Day 1</h4>
-                    </div>
-                    <div class="card">
-                        <h4 class="card-header">Day 2</h4>
-                    </div>
-                    <div class="card">
-                        <h4 class="card-header">Day 3</h4>
-                    </div>
-                    <div class="card">
-                        <h4 class="card-header">Day 4</h4>
-                    </div>
-                    <div class="card">
-                        <h4 class="card-header">Day 5</h4>
-                    </div>-->
-                </div>
+                <div class="d-flex" id="five-day-forecast"></div>
             </div>
         </div>
     </main>
