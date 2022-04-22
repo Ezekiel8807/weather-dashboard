@@ -1,10 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 form input {
     display: block;
     width: 100%;
 }
 
 .search-btn {
-    width: 60%;
+    width: 61%;
 }
 
 .hidden {

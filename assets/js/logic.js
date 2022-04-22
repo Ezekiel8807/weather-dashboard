@@ -5,24 +5,15 @@ var apiKey = '876a9cd8007aec3aef4fd80583307842';
 //var to play with the hidden display until the user interacts with the app
 var genDisplay = document.getElementById("general-display")
 
-// input from the search bar
-var citySearchEl = $("#city");
-// display for city name on the page
-var cityNameEl = $("#searched-city")
-// display for weather
-var currentWeather = $("#current-weather")
-// display for 5-day weather
-var fiveDayDisplay = $("#five-day-forecast")
-// create an array for the purpose of monitoring all the buttons
 var searchedCities = [];
 
 function formSubmitHandler(event) {
     event.preventDefault()
     // grab the input value and store it in a variable
-    var city = citySearchEl.val().trim();
+    var city = $("#city").val().trim();
 
     if (city) {
-        citySearchEl.val('')
+        $("#city").val('')
         getGenInfo(city)
     } else {
         alert("Please enter a valid city")
@@ -91,7 +82,7 @@ function getCurrentWeather(lat, lon){
 
 function displayCurrentInfo(weather) {
     //clear out the list for every call
-    currentWeather.children().remove()
+    $("#current-weather").children().remove()
 
     //pull the weather icon link
     var weatherImg = "http://openweathermap.org/img/wn/" + weather.weather[0].icon + ".png"
@@ -128,7 +119,7 @@ function checkUv(uvi){
 }
 
 function displayFiveDayInfo(futureWeather){
-    fiveDayDisplay.children().remove()
+    $("#five-day-forecast").children().remove()
 
     console.log(futureWeather)
 
@@ -141,6 +132,7 @@ function displayFiveDayInfo(futureWeather){
         //create a div to put the weather cards up
         var forecastCard = document.createElement("div");
         forecastCard.setAttribute("class", "card mx-3")
+        forecastCard.setAttribute("style", "width: 20%")
 
         // get the forecast date to the screen
         var forecastDate = document.createElement("h4")
@@ -178,7 +170,7 @@ function displayFiveDayInfo(futureWeather){
         forecastUvi.textContent = "UV-Index: " + dailyForecast.uvi;
         forecastCard.appendChild(forecastUvi);
 
-        fiveDayDisplay.append(forecastCard)
+        $("#five-day-forecast").append(forecastCard)
     }
 }
 
