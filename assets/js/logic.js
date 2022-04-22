@@ -21,7 +21,7 @@ function formSubmitHandler(event) {
 }
 
 function getGenInfo(city){
-    var directGeoCode = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&&appid=${apiKey}`
+    var directGeoCode = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&&appid=${apiKey}`
     //fetch the general info - we want city name, state name, and lat/lon
     fetch(directGeoCode).then(function(response){
         if(response.ok) {
@@ -85,7 +85,7 @@ function displayCurrentInfo(weather) {
     $("#current-weather").children().remove()
 
     //pull the weather icon link
-    var weatherImg = "http://openweathermap.org/img/wn/" + weather.weather[0].icon + ".png"
+    var weatherImg = "https://openweathermap.org/img/wn/" + weather.weather[0].icon + ".png"
     var weatherAlt = weather.weather[0].main + ": " + weather.weather[0].description;
 
     // var for the current Date-
@@ -126,7 +126,7 @@ function displayFiveDayInfo(futureWeather){
     for(var i = 1; i < 6; i++){
         var dailyForecast = futureWeather[i];
         // acquire the icon and description of the weather for each day
-        var forecastWeatherImg = "http://openweathermap.org/img/wn/" + dailyForecast.weather[0].icon + "@2x.png"
+        var forecastWeatherImg = "https://openweathermap.org/img/wn/" + dailyForecast.weather[0].icon + "@2x.png"
         var forecastWeatherAlt = dailyForecast.weather[0].main + ": " + dailyForecast.weather[0].description;
 
         //create a div to put the weather cards up
