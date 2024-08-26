@@ -119,11 +119,9 @@ function checkUv(uvi){
 }
 
 function displayFiveDayInfo(futureWeather){
-    $("#five-day-forecast").children().remove()
+    $("#five-day-forecast").children().remove();
 
-    console.log(futureWeather)
-
-    for(var i = 1; i < 6; i++){
+    for(var i = 1; i < futureWeather.length; i++){
         var dailyForecast = futureWeather[i];
         // acquire the icon and description of the weather for each day
         var forecastWeatherImg = "https://openweathermap.org/img/wn/" + dailyForecast.weather[0].icon + "@2x.png"
@@ -131,12 +129,11 @@ function displayFiveDayInfo(futureWeather){
 
         //create a div to put the weather cards up
         var forecastCard = document.createElement("div");
-        forecastCard.setAttribute("class", "card mx-3")
-        forecastCard.setAttribute("style", "width: 20%")
+        forecastCard.setAttribute("class", "forecastCard")
 
         // get the forecast date to the screen
         var forecastDate = document.createElement("h4")
-        forecastDate.setAttribute("class", "card-header text-center text-light bg-primary")
+        forecastDate.setAttribute("class", "card-header text-center text-light bg-dark" )
         forecastDate.textContent = new Date(dailyForecast.dt * 1000).toLocaleDateString();
         forecastCard.appendChild(forecastDate);
 
@@ -201,3 +198,7 @@ $("#recent-searches").on("click", "button", function() {
 })
 
 loadCities();
+
+$(document).ready(() => {
+    getGenInfo("Ondo");
+})
