@@ -21,20 +21,13 @@ form input {
     display: none;
 }
 
-
-.blue-gradient {
-    color: rgb(2,0,36);
-    color: linear-gradient(90deg, rgba(2,0,36,1) 0%, 
-    rgba(9,9,121,1) 32%, rgba(0,212,255,1) 100%);
-}
-
 .hero {
-    background-color: #fff;
-    box-shadow: 0px 0px 3px #000;
+    background-color: #000;
+    box-shadow: 0px 0px 3px #ddd;
 }
 
 .logo {
-    color: #000;    
+    color: #fff;    
     font-weight: bold;
 }
 
@@ -56,6 +49,25 @@ form input {
     border-bottom: 3px solid #000;
 }
 
+
+/* right hand side card styling */
+.card-block {
+    margin-bottom: 20px;
+}
+
+.recent_block {
+    background-color: rgb(96, 20, 182);
+}
+
+@media screen and (max-width: 760px){
+    .recent_block {
+        display: none;
+        background-color: red;
+    }
+}
+
+
+/* the page foot styling */
 .foot {
     margin: 0;
     padding: 20px;

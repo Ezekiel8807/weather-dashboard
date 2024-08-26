@@ -22,17 +22,17 @@
 
             <!--Create the search column-->
             <div class="col-12 col-md-3 ml-3">
-                <div class="card">
-                    <h3 class="card-header text-center">Search For A City</h3>
-                    <form id="" class="card-body text-center">
-                        <label class="form-label" for="city"></label>
-                        <input name="city" id="city" type="text" autofocus="true" class="form-input text-center" placeholder="Las Vegas"/>
-                        <button class="btn mt-2 search-btn blue-gradient text-light" id="search-btn" type="submit">Search</button>
+                <div class="card card-block">
+                    <h3 class="card-header fw-bold">Enter location</h3>
+                    <form class="p-3 d-flex align-items-center justify-items-space-evenly">
+                        <input name="city" id="city" type="text" class="form-input" placeholder="Ondo State"/>
+                        <button class="btn mt-2 search text-light bg-dark" id="search-btn" type="submit">Search</button>
                     </form>
                 </div>
+
                 <!--Recent Searches below the search bar-->
-                <div class="card text-center">
-                    <h3 class="card-header">Recent Searches</h3>
+                <div class="card card-block recent_block">
+                    <h3 class="card-header text-center">Recent Searches</h3>
                     <div class="card-body list-group" id="recent-searches"></div>
                 </div>
             </div>
