@@ -1,19 +1,19 @@
-
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 /* General Styles */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: #333;
     /* background: #f7f9fc; Light grayish-blue background for a clean look */
-    margin: 0;
-    padding: 0;
     background: url('https://w0.peakpx.com/wallpaper/936/131/HD-wallpaper-blue-sunset-for-deejai-rocks-sun-background-afternoon-sundown-nice-stones-multicolor-sunbeam-dawn-sunrays-backwater-purple-nightfall-violet-beautiful-leaves-roots-sand-wallpape.jpg') no-repeat center center;
     background-size: cover;
 }
 
 /* https://images.pexels.com/photos/416920/pexels-photo-416920.jpeg */
-.backImage {
+/* .backImage {
     width: 100%;
     height: 100vh;
     background: url('https://w0.peakpx.com/wallpaper/936/131/HD-wallpaper-blue-sunset-for-deejai-rocks-sun-background-afternoon-sundown-nice-stones-multicolor-sunbeam-dawn-sunrays-backwater-purple-nightfall-violet-beautiful-leaves-roots-sand-wallpape.jpg') no-repeat center center;
@@ -27,7 +27,7 @@ body {
     padding: 4rem 2rem;
     text-align: center;
     position: relative;
-}
+} */
 
 .logo {
     font-size: 2rem;
@@ -44,7 +44,8 @@ body {
 }
 
 .landing-header {
-    width: 80%;
+    z-index: 0;
+    width: 90%;
     padding: 10px;
     margin: 50px auto;
     border-radius: 50px;
@@ -55,6 +56,7 @@ body {
 .content-con {
     top: 30%;
     left: 50%;
+    z-index: -500;
     position: absolute;
     text-align: center;
     transform: translate(-50%, 50%);
@@ -93,6 +95,7 @@ body {
     padding: 5px;
     border-radius: 10px;
     text-decoration: none;
+    text-align: center;
     background-color: #ffffff;
 }
 
@@ -218,7 +221,7 @@ main.container {
 }
 
 /* Footer Styling */
-footer {
+/* footer {
     background-color: #007bff;
     color: white;
     text-align: center;
@@ -236,7 +239,7 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
-}
+} */
 
 /* Responsive Design */
 @media (max-width: 768px) {
