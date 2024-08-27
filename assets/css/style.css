@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -51,7 +51,7 @@ form input {
 
 
 /* right hand side card styling */
-.card-block {
+/* .card-block {
     margin-bottom: 20px;
 }
 
@@ -64,15 +64,191 @@ form input {
         display: none;
         background-color: red;
     }
-}
+} */
 
 
 /* the page foot styling */
-.foot {
+/* .foot {
     margin: 0;
     padding: 20px;
     color: #fff;
     font-weight: bold;
     text-align: center;
     background-color: black;
+}  */
+
+
+
+
+
+
+/* General Styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    background: #f7f9fc; /* Light grayish-blue background for a clean look */
+    margin: 0;
+    padding: 0;
+}
+
+header.hero {
+    background: url('https://www.shutterstock.com/shutterstock/photos/1661042185/display_1500/stock-vector-vector-sun-with-clouds-background-paper-cut-style-cloudy-paper-cut-art-vector-illustration-1661042185.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+}
+
+header .logo {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Main Container */
+main.container {
+    padding: 2rem;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.card-header {
+    background: #007bff;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 1rem;
+    border-bottom: 1px solid #0056b3;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Search Section */
+.form-input {
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+    margin-right: 0.5rem;
+    flex: 1;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.btn.search {
+    border-radius: 30px;
+    padding: 0.75rem 2rem;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn.search:hover {
+    background-color: #0056b3;
+}
+
+/* Weather Display */
+#current-day {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#current-day h3 {
+    margin-top: 0;
+}
+
+#current-weather {
+    margin-top: 1rem;
+}
+
+.forecast-block {
+    display: grid;
+    gap: 1.5rem;    
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    justify-content: center;
+}
+
+.forecast-block .forecast-item {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.forecast-item img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0.75rem;
+}
+
+.forecast-item h4 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.forecast-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer Styling */
+footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+footer a {
+    color: #e0f7fa;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .col-md-3, .col-md-9 {
+        margin-left: 0;
+    }
+
+    .col-md-3, .col-md-9 {
+        margin-bottom: 1.5rem;
+    }
+
+    .forecast-block {
+        flex-direction: column;
+        align-items: center;
+    }
 }
