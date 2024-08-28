@@ -17,7 +17,7 @@
     <header class="landing-header">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a class="logo" href="index.html"> Termo </a>
+                <a id="logo" class="logo" href="index.html"> Termo </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -48,7 +48,7 @@
     </header>
 
 
-    <section id="login">
+    <section id="login_section">
         <div class="box-contain login-box">
 
             
@@ -56,6 +56,7 @@
 
                 <h1 class="h1 fw-bold legend text-center">Login</h1>
 
+                <small id="error_msg" class="text-danger text-center"></small>
                 <label class="form-label" for="username">username: </label>
                 <input class="form-control" type="text" name="username" id="username" placeholder="Enter Username">
 
@@ -63,7 +64,7 @@
                 <input class="form-control" type="password" name="pass" id="pass" placeholder="Enter Password">
  
 
-                <input class="btn btn-primary my-3 form-control fw-bold" type="submit" value="Login">
+                <input class="btn btn-primary my-3 form-control fw-bold" type="button" id="login" value="Login">
             </form>
         </div>
     </section>

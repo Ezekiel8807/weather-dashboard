@@ -5,7 +5,72 @@ var apiKey = '876a9cd8007aec3aef4fd80583307842';
 //var to play with the hidden display until the user interacts with the app
 var genDisplay = document.getElementById("general-display")
 
+//search city history
 var searchedCities = [];
+
+//login check
+var isLogin = () => {
+    if(localStorage === null) {
+        return false;
+
+    }else {
+        return true;
+    }
+}
+
+//handle user registration 
+$("#register").click(() => {
+
+    //get user registration info
+    let username = $("#username").val();
+    let email = $("#email").val();
+    let pass = $("#pass").val();
+
+    //error message
+    let errorMsg = $("#error_msg");
+
+    if(!username || !email || !pass){
+        errorMsg.text("All fields required!");
+
+    }else {
+        let newUser = {
+            username,
+            email,
+            pass
+        }
+
+        localStorage.setItem(newUser.username, JSON.stringify(newUser));
+        window.location.replace("/login.html");
+        alert("Registration Successful");
+    };
+})
+
+//handle user signing in
+$("#login").click((isLogin) => {
+
+    //get user login info
+    let username = $("#username").val();
+    let pass = $("#pass").val();
+
+    //error message
+    let errorMsg = $("#error_msg");
+
+    if(!username || !pass){
+        errorMsg.text("All fields required!");
+
+    }else {
+        let user = localStorage.getItem(username);
+
+        if(user === null) {
+            errorMsg.text("Wrong user details");
+
+        }else{
+            window.location.replace("/dashboard.html");
+            alert("Login Successful");
+        }
+    };
+})
+
 
 function formSubmitHandler(event) {
     event.preventDefault()
@@ -39,7 +104,7 @@ function getGenInfo(city){
 }
 
 function displayGenInfo(data, city){
-    genDisplay.classList.remove("hidden")
+    // genDisplay.classList.remove("hidden")
     //get the city name and state together
     var cityState = data[0].name + ", " + data[0].state;
     $("#searched-city").text(cityState)
@@ -200,5 +265,12 @@ $("#recent-searches").on("click", "button", function() {
 loadCities();
 
 $(document).ready(() => {
+
+    //default state weather forecast
     getGenInfo("Ondo");
+
+    let check = isLogin();
+    (check === true) ? $("#logo").attr("href", "dashboard.html") : $("#logo").attr("href", "index.html");
+
+
 })
