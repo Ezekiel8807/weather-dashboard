@@ -40,7 +40,7 @@ $("#register").click(() => {
         }
 
         localStorage.setItem(newUser.username, JSON.stringify(newUser));
-        window.location.replace("/login");
+        window.location.replace("/login.html");
         alert("Registration Successful");
     };
 })
@@ -65,7 +65,7 @@ $("#login").click((isLogin) => {
             errorMsg.text("Wrong user details");
 
         }else{
-            window.location.replace("/dashboard");
+            window.location.replace("/dashboard.html");
             alert("Login Successful");
         }
     };
@@ -270,7 +270,7 @@ $(document).ready(() => {
     getGenInfo("Ondo");
 
     let check = isLogin();
-    (check === true) ? $("#logo").attr("href", "/dashboard") : $("#logo").attr("href", "/index");
+    (check === true) ? $("#logo").attr("href", "dashboard.html") : $("#logo").attr("href", "index.html");
 
 
 })
