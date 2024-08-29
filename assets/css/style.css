@@ -5,7 +5,8 @@
 }
 
 /* General Styles */
-body {
+/* https://images.pexels.com/photos/416920/pexels-photo-416920.jpeg */
+.backImage {
     width: 100%;
     height: 100vh;
     position: relative;
@@ -18,10 +19,21 @@ body {
     z-index: 1;
     width: 90%;
     padding: 5px;
-    margin: 50px auto;
+    margin: 20px auto;
     border-radius: 50px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.hero {
+    z-index: 1;
+    width: 90%;
+    padding: 5px;
+    margin: 20px auto;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #007bff;
 }
 
 
@@ -43,6 +55,15 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.logo_dash {
+    color: #fff;
+    margin-left: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 .login {
     display: block;
     color: #ffffff;
@@ -50,6 +71,15 @@ body {
     border-radius: 10px;
     text-align: center;
     background-color: #007bff;
+}
+
+.login_dash {
+    display: block;
+    color: #007bff;
+    margin-right: 20px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #fff;
 }
 
 #intro {
@@ -236,11 +266,14 @@ main.container {
 
 /* Weather Display */
 #current-day {
-    background: #ffffff;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    background-image: url("https://images.pexels.com/photos/912364/pexels-photo-912364.jpeg");
 }
 
 #current-day h3 {
@@ -327,20 +360,3 @@ footer a:hover {
         display: none;
     }
 }
-
-/* https://images.pexels.com/photos/416920/pexels-photo-416920.jpeg */
-/* .backImage {
-    width: 100%;
-    height: 100vh;
-    background: url('https://w0.peakpx.com/wallpaper/936/131/HD-wallpaper-blue-sunset-for-deejai-rocks-sun-background-afternoon-sundown-nice-stones-multicolor-sunbeam-dawn-sunrays-backwater-purple-nightfall-violet-beautiful-leaves-roots-sand-wallpape.jpg') no-repeat center center;
-    background-size: cover;
-}
-
-.hero {
-    background: url('https://w0.peakpx.com/wallpaper/936/131/HD-wallpaper-blue-sunset-for-deejai-rocks-sun-background-afternoon-sundown-nice-stones-multicolor-sunbeam-dawn-sunrays-backwater-purple-nightfall-violet-beautiful-leaves-roots-sand-wallpape.jpg') no-repeat center center;
-    background-size: cover;
-    color: white;
-    padding: 4rem 2rem;
-    text-align: center;
-    position: relative;
-} */

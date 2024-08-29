@@ -116,7 +116,7 @@ function displayGenInfo(data, city){
 function createButton(name) {
     // create a button with the data that's present.
     var recentSearch = document.createElement("button");
-    recentSearch.setAttribute("class", "btn blue-gradient text-light mb-2 ml-2")
+    recentSearch.setAttribute("class", "btn blue-gradient text-dark mb-2 ml-2")
     recentSearch.setAttribute("id", "history")
     recentSearch.textContent = name;
     //Make sure that no duplicate buttons can be made
